@@ -1,0 +1,71 @@
+# =============================================================
+# OceanLabz AI Explorer S3 Board — .gitignore
+# =============================================================
+
+# Arduino build artifacts
+*.ino.cpp
+*.ino.h
+*.elf
+*.bin
+*.map
+*.hex
+*.partitions.bin
+*.bootloader.bin
+
+# Build directories
+build/
+build-*/
+cmake-build-*/
+
+# IDE / Editor files
+.vscode/settings.json
+.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# PlatformIO (if used)
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Compiled / generated files
+*.o
+*.a
+*.d
+*.lst
+*.s
+
+# Sphinx / docs build
+docs/_build/
+docs/api/generated/
+
+# Binary / firmware dumps
+*.dump
+firmware/
+*.uf2
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Assets that should not be committed (large binaries)
+assets/3d_models/*.step
+assets/3d_models/*.stp
+assets/3d_models/*.stl
+assets/videos/
+
+# Environment / secrets
+.env
+*.key
+*.pem

@@ -1,0 +1,26 @@
+name: Question / Help
+description: Ask a question about using the AI Explorer S3 Board
+title: "[QUESTION] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before asking, please check the [Troubleshooting Guide](../../docs/troubleshooting/README.md) and search existing issues.
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like help with?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What are you trying to build? What have you tried so far?
+  - type: input
+    id: environment
+    attributes:
+      label: Arduino IDE & ESP32 Version
+      description: e.g., Arduino IDE 2.3.2, ESP32 Core 2.0.17

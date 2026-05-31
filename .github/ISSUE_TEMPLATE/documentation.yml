@@ -1,0 +1,36 @@
+name: Documentation Improvement
+description: Report a documentation error, missing information, or suggest improvements
+title: "[DOCS] "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping us improve our documentation!
+  - type: input
+    id: page
+    attributes:
+      label: Document / Page
+      description: Which document or page needs improvement?
+      placeholder: e.g., docs/guides/display/README.md
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What's wrong or missing?
+      description: Describe the issue with the current documentation
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested improvement
+      description: How should it be fixed or improved?
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Verification
+      options:
+        - label: I would be willing to submit a PR for this change
+          required: false

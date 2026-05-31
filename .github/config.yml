@@ -1,0 +1,11 @@
+# Repository Configuration for OceanLabz AI Explorer S3 Board
+
+# Issue and PR templates directory
+blank_issues_enabled: false
+contact_links:
+  - name: OceanLabz Community Discussions
+    url: https://github.com/ocean-labz/OceanLabz-AI-Explorer-S3-Board/discussions
+    about: Please ask and answer questions here.
+  - name: OceanLabz YouTube Channel
+    url: https://youtube.com/@ocean-labz
+    about: Video tutorials and project demonstrations.

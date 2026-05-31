@@ -1,0 +1,54 @@
+name: Example Compile Check
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'examples/**'
+      - '.github/workflows/example-compile-check.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'examples/**'
+
+jobs:
+  compile-check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        example:
+          - examples/01-basics/01_blink
+          - examples/01-basics/02_serial_test
+          - examples/01-basics/03_hello_world
+          - examples/02-display/01_oled_hello
+          - examples/02-display/02_tft_graphics
+          - examples/04-storage/01_sdmmc_card_test
+          - examples/03-audio/01_mic_recorder
+          - examples/03-audio/02_speaker_test
+      fail-fast: false
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Arduino CLI
+        uses: arduino/setup-arduino-cli@v1
+
+      - name: Install ESP32 core
+        run: |
+          arduino-cli config init
+          arduino-cli config set board_manager.additional_urls https://raw.githubusercontent.com/espressif/arduino-esp32/gh-packages/package_esp32_index.json
+          arduino-cli core update-index
+          arduino-cli core install esp32:esp32
+
+      - name: Install required libraries
+        run: |
+          arduino-cli lib install "Adafruit NeoPixel"
+          arduino-cli lib install "Adafruit SSD1306"
+          arduino-cli lib install "Adafruit GFX"
+          arduino-cli lib install "TFT_eSPI"
+
+      - name: Compile ${{ matrix.example }}
+        run: |
+          arduino-cli compile --fqbn esp32:esp32:esp32s3:PSRAM=opi,FlashSize=16M,PartitionScheme=16M ${{ matrix.example }}
+        continue-on-error: true

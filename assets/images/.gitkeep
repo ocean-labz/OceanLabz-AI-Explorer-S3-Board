@@ -1,0 +1,35 @@
+# Asset Repository Guidelines
+
+This directory stores all non-code assets for the OceanLabz AI Explorer S3 Board repository.
+
+## Structure
+
+| Directory | Purpose |
+|-----------|---------|
+| `images/` | Product photos, screenshots, example output images |
+| `datasheets/` | Component datasheets (INMP441, MAX98357A, ESP32-S3, etc.) |
+| `diagrams/` | Pinout diagrams, block diagrams, wiring schematics |
+| `logos/` | OceanLabz branding assets (SVG, PNG) |
+| `3d_models/` | STL/STEP files for 3D-printable enclosures |
+| `wiring_guides/` | Fritzing-style wiring illustrations |
+
+## Naming Convention
+
+Follow the conventions defined in [`docs/contributing/documentation-standards.md`](../docs/contributing/documentation-standards.md).
+
+```
+[category]_[subject]_[description].[ext]
+```
+
+## File Guidelines
+
+- **Images:** PNG or JPG, max 1200 px wide, max 500 KB per image
+- **Datasheets:** PDF only, include the manufacturer part number in the filename
+- **Diagrams:** SVG preferred (scalable), PNG acceptable for complex renders
+- **3D Models:** STL for printable models, STEP for source CAD
+
+## License
+
+All assets in this repository are covered by the same [MIT License](../LICENSE) unless otherwise noted in a subdirectory's own `LICENSE` file. Datasheets remain the property of their respective manufacturers.
+
+> For questions about contributing assets, see [`docs/contributing/CONTRIBUTING.md`](../docs/contributing/CONTRIBUTING.md).

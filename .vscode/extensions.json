@@ -1,0 +1,20 @@
+{
+  "recommendations": [
+    "ms-vscode.cpptools",
+    "ms-vscode.cpptools-extension-pack",
+    "arduino.arduino",
+    "github.vscode-pull-request-github",
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+    "shd101wyy.markdown-preview-enhanced",
+    "bierner.markdown-mermaid",
+    "christian-kohler.npm-intellisense",
+    "streetsidesoftware.code-spell-checker",
+    "ms-vscode.vscode-serial-monitor",
+    "marus25.cortex-debug",
+    "mcu-debug.debug-tracker-vscode",
+    "mcu-debug.memory-view",
+    "mcu-debug.rtos-views",
+    "platformio.platformio-ide"
+  ]
+}

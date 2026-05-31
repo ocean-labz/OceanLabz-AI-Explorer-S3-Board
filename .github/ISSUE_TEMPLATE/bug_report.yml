@@ -1,0 +1,71 @@
+name: Bug Report
+description: Report a problem with the board, firmware, or documentation
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the Bug
+      description: A clear and concise description of what the bug is.
+      placeholder: The camera example crashes when...
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this issue?
+      placeholder: |
+        1. Connect camera module
+        2. Upload camera_test.ino
+        3. Open Serial Monitor
+        4. See error message
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Please complete the following information
+      value: |
+        - Board: OceanLabz AI Explorer S3
+        - Arduino IDE Version:
+        - ESP32 Arduino Core Version:
+        - Operating System:
+        - USB Port Type (USB 2.0 / 3.0):
+        - Power Source (USB / Battery):
+    validations:
+      required: true
+  - type: textarea
+    id: sketches
+    attributes:
+      label: Relevant Code / Sketches
+      description: Please copy and paste any relevant code. This will be automatically formatted.
+      render: cpp
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console Output
+      description: Copy and paste the Arduino IDE console output. This will be automatically formatted.
+      render: text
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Verification
+      options:
+        - label: I have checked the Troubleshooting Guide and this is not a known issue
+          required: true
+        - label: I have searched existing issues and this is not a duplicate
+          required: true
