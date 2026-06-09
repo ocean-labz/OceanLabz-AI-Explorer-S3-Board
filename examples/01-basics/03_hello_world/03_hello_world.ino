@@ -1,7 +1,7 @@
 /**
  * @file    03_hello_world.ino
  * @author  OceanLabz
- * @date    2024
+ * @date    2026
  * @brief   Third example for the OceanLabz AI Explorer S3 Board.
  *
  *          The simplest possible "Hello World" — no external hardware,

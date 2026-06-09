@@ -1,7 +1,7 @@
 /**
  * @file    01_blink.ino
  * @author  OceanLabz
- * @date    2024
+ * @date    2026
  * @brief   First example for the OceanLabz AI Explorer S3 Board.
  *
  *          Blinks the onboard RGB LED (WS2812B NeoPixel on GPIO14) with
@@ -139,6 +139,8 @@ static void effectNormalBlink() {
     static uint32_t prev = 0;
     static bool     on = false;
 
+    strip.setBrightness(50);       // ensure visible after any fade
+
     if (millis() - prev >= 1000) {
         prev = millis();
         on = !on;
@@ -153,6 +155,8 @@ static void effectNormalBlink() {
 static void effectFastBlink() {
     static uint32_t prev = 0;
     static bool     on = false;
+
+    strip.setBrightness(50);       // ensure visible after any fade
 
     if (millis() - prev >= 200) {
         prev = millis();
@@ -188,21 +192,23 @@ static void effectHeartbeat() {
 // 3 — SOS Morse Code: ... --- ...
 // ----------------------------------------------------------
 static void effectSos() {
-    // Unit = 200 ms; dot = 1 unit, dash = 3 units, gap = 1 unit
-    // Letter gap = 3 units, word gap = 7 units
+    // Unit = 200 ms; dot = 1 unit, dash = 3 units
+    // Inter-symbol gap = 1 unit (inside dot/dash helpers)
+    // Letter gap = 3 units total → +2 extra units after helpers
+    // Word gap   = 7 units total → +6 extra units after helpers
     const uint16_t UNIT = 200;
 
     // S = dot dot dot
-    dot(); dot(); dot();
-    delay(UNIT * 3);               // letter gap
+    dot(UNIT); dot(UNIT); dot(UNIT);
+    delay(UNIT * 2);               // letter gap (2 extra + 1 from last dot)
 
     // O = dash dash dash
-    dash(); dash(); dash();
-    delay(UNIT * 3);
+    dash(UNIT); dash(UNIT); dash(UNIT);
+    delay(UNIT * 2);
 
     // S = dot dot dot
-    dot(); dot(); dot();
-    delay(UNIT * 7);               // word gap before repeat
+    dot(UNIT); dot(UNIT); dot(UNIT);
+    delay(UNIT * 6);               // word gap (6 extra + 1 from last dot)
 
     Serial.println(F("SOS"));
 }
@@ -211,9 +217,13 @@ static void effectSos() {
 // 4 — Fade: smooth brightness and colour cycling
 // ----------------------------------------------------------
 static void effectFade() {
-    // Cycle hue from 0 → 360 over 5 seconds
+    // Cycle through 16-bit hue space (0–65535)
     static uint16_t hue = 0;
     const  uint16_t STEP = 1;
+
+    // Ensure brightness is at a visible level (may have been
+    // corrupted by other effects, e.g. heartbeat fade-out).
+    strip.setBrightness(50);
 
     // Convert HSV to RGB via NeoPixel gamma
     uint32_t color = strip.gamma32(strip.ColorHSV(hue, 255, 200));
@@ -222,7 +232,7 @@ static void effectFade() {
     hue = (hue + STEP) % 65536;    // 16-bit hue space
     delay(20);                     // ~50 fps → ~6.5 s per full cycle
 
-    // Print hue once per revolution
+    // Print once per full hue revolution
     if (hue == 0) {
         Serial.println(F("fade cycle complete"));
     }
@@ -236,6 +246,8 @@ static void effectRandom() {
     static uint16_t wait = 500;        // initial interval
     static bool     on = false;
     static uint32_t color = COL_RED;
+
+    strip.setBrightness(50);           // ensure visible after any fade
 
     if (millis() - prev >= wait) {
         prev = millis();
@@ -333,30 +345,38 @@ static void setLed(uint32_t color) {
 
 /**
  * Morse dot: 1 unit on, 1 unit off.
+ * @param unitMs  Duration of one Morse time-unit in milliseconds.
  */
-static void dot() {
+static void dot(uint16_t unitMs) {
     setLed(COL_WHITE);
-    delay(200);
+    delay(unitMs);
     setLed(COL_OFF);
-    delay(200);
+    delay(unitMs);
 }
 
 /**
  * Morse dash: 3 units on, 1 unit off.
+ * @param unitMs  Duration of one Morse time-unit in milliseconds.
  */
-static void dash() {
+static void dash(uint16_t unitMs) {
     setLed(COL_WHITE);
-    delay(600);
+    delay(unitMs * 3);
     setLed(COL_OFF);
-    delay(200);
+    delay(unitMs);
 }
 
 /**
  * Smooth brightness fade from `startBright` to `endBright` over
  * `durationMs` milliseconds, using `color`.
+ *
+ * Saves and restores the strip's global brightness so that other
+ * effects are not left in a dark state after this function returns.
  */
 static void fadeTo(uint32_t color, unsigned long durationMs,
     uint8_t startBright, uint8_t endBright) {
+    // Save current brightness so we can restore it afterwards
+    uint8_t savedBright = strip.getBrightness();
+
     // Number of steps = duration / 10 ms (100 Hz update rate)
     unsigned long steps = durationMs / 10;
     if (steps == 0) steps = 1;
@@ -367,6 +387,9 @@ static void fadeTo(uint32_t color, unsigned long durationMs,
         setLed(color);
         delay(10);
     }
+
+    // Restore the brightness that was in effect before this fade
+    strip.setBrightness(savedBright);
 }
 
 /**

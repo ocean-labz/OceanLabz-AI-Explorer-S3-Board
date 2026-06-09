@@ -14,9 +14,9 @@
 #ifndef PINS_AI_EXPLORER_S3_H
 #define PINS_AI_EXPLORER_S3_H
 
-// ============================================================
-// Power / System
-// ============================================================
+ // ============================================================
+ // Power / System
+ // ============================================================
 #define BOARD_LED          14    // RGB LED (NeoPixel / WS2812B)
 
 // ============================================================
@@ -63,21 +63,21 @@
 // Pins are fixed by board layout. Do not change.
 // ============================================================
 #define CAM_PWDN           -1    // Power Down (not connected)
-#define CAM_RESET          -1    // Reset (not connected — shared with TFT RST)
+#define CAM_RESET          -1    // Reset (not connected)
 #define CAM_XCLK           15    // External Clock
+#define CAM_PCLK           13    // Pixel Clock
+#define CAM_VSYNC           6    // Vertical Sync
+#define CAM_HREF            7    // Horizontal Reference
 #define CAM_SIOD            4    // SCCB Data (I²C-like)
 #define CAM_SIOC            5    // SCCB Clock
-#define CAM_Y9              6    // Pixel data bit 9
-#define CAM_Y8              7    // Pixel data bit 8
-#define CAM_Y7              8    // Pixel data bit 7
-#define CAM_Y6              9    // Pixel data bit 6
-#define CAM_Y5             10    // Pixel data bit 5
-#define CAM_Y4             11    // Pixel data bit 4
-#define CAM_Y3             12    // Pixel data bit 3
-#define CAM_Y2             13    // Pixel data bit 2
-#define CAM_VSYNC          14    // Vertical Sync (shared with RGB LED)
-#define CAM_HREF           16    // Horizontal Reference
-#define CAM_PCLK           17    // Pixel Clock
+#define CAM_D0             11    // Data bit 0  (Y2)
+#define CAM_D1              9    // Data bit 1  (Y3)
+#define CAM_D2              8    // Data bit 2  (Y4)
+#define CAM_D3             10    // Data bit 3  (Y5)
+#define CAM_D4             12    // Data bit 4  (Y6)
+#define CAM_D5             18    // Data bit 5  (Y7)
+#define CAM_D6             17    // Data bit 6  (Y8)
+#define CAM_D7             16    // Data bit 7  (Y9)
 
 // ============================================================
 // I²S Bus Configuration

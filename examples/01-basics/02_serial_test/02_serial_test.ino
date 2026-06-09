@@ -1,7 +1,7 @@
 /**
  * @file    02_serial_test.ino
  * @author  OceanLabz
- * @date    2024
+ * @date    2026
  * @brief   Second example for the OceanLabz AI Explorer S3 Board.
  *
  *          Dumps complete system information to the Serial console
@@ -297,10 +297,10 @@ static void cmdFlash() {
     Serial.println(F(" MB"));
 
     // Flash chip model
-    esp_flash_t* flash = NULL;
-    if (esp_flash_init(&flash) == ESP_OK && flash != NULL) {
+    esp_flash_t flash;
+    if (esp_flash_init(&flash) == ESP_OK) {
         const char* model = "Unknown";
-        switch (flash->chip_id) {
+        switch (flash.chip_id) {
         case 0x5E: model = "GD25Q128"; break;
         case 0x17: model = "W25Q128JV"; break;
         case 0x20: model = "XM25Q128"; break;
@@ -310,11 +310,6 @@ static void cmdFlash() {
         Serial.print(F("  Model: "));
         Serial.println(model);
 
-        Serial.print(F("  Mode:  "));
-        if (flash->chip_drv->io_mode == 2) Serial.print(F("QIO"));
-        else if (flash->chip_drv->io_mode == 1) Serial.print(F("DIO"));
-        else Serial.print(F("Standard SPI"));
-        Serial.println();
     }
 
     // Partition info
