@@ -1,8 +1,8 @@
 <!-- OceanLabz AI Explorer S3 Board — Official Repository -->
 
 <div align="center">
-  <img src="assets/logos/oceanlabz_logo.png" alt="OceanLabz Logo" width="200"/>
-  <h1>🌊 OceanLabz AI Explorer S3 Board</h1>
+  <!-- <img src="assets/logos/oceanlabz_logo.png" alt="OceanLabz Logo" width="200"/> -->
+  <h1> OceanLabz AI Explorer S3 Board</h1>
   <p><strong>Your Gateway to AI, Audio, and Embedded Vision — on ESP32-S3</strong></p>
 
   <!-- Badge Row -->
@@ -34,8 +34,8 @@ The **OceanLabz AI Explorer S3 Board** is a feature-rich development platform bu
 
 This repository provides everything you need to get started: Arduino-compatible example sketches, documentation, pin configurations, and community resources.
 
-> **Target Audience:** Students • Hobbyists • Makers  
-> **Primary Framework:** [Arduino IDE](https://www.arduino.cc/)  
+> **Target Audience:** Students • Hobbyists • Makers
+> **Primary Framework:** [Arduino IDE](https://www.arduino.cc/)
 > **Repository:** [github.com/ocean-labz/OceanLabz-AI-Explorer-S3-Board](https://github.com/ocean-labz/OceanLabz-AI-Explorer-S3-Board)
 
 ---
@@ -198,7 +198,7 @@ This repository provides everything you need to get started: Arduino-compatible 
 | Arduino IDE | v2.x recommended ([download](https://www.arduino.cc/en/software)) |
 
 ### Step 1: Install Arduino IDE
-Download and install the latest version from [arduino.cc](https://www.arduino.cc/en/software).  
+Download and install the latest version from [arduino.cc](https://www.arduino.cc/en/software).
 Version 2.x is recommended for its modern editor, serial monitor, and board manager.
 
 ### Step 2: Add ESP32 Board Support
@@ -344,7 +344,7 @@ Please see our [Contributing Guide](docs/contributing/CONTRIBUTING.md) and [Code
 
 ## 📄 License
 
-This repository is licensed under the **MIT License**.  
+This repository is licensed under the **MIT License**.
 See the [LICENSE](LICENSE) file for full details.
 
 *Hardware designs and PCB files are not included in this repository.*
